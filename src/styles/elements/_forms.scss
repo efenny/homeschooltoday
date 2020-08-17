@@ -244,3 +244,16 @@
     color: $darkModeWhite !important;
   }
 }
+
+// forms for the workshops
+.postid-674 {
+  .gform_wrapper {
+    max-width: 420px;
+
+    .gform_footer {
+      > p {
+        display: none;
+      }
+    }
+  }
+}
