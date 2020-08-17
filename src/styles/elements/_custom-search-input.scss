@@ -1,0 +1,111 @@
+.search-filter-wrapper {
+  margin-bottom: 1rem;
+  display: inline-block;
+  position: relative;
+
+  .search-filter-input {
+    padding: 0.5rem 0.75rem;
+    padding-right: 2.75rem;
+    @include box-shadow-light-hover;
+    outline: none;
+    background: none;
+    background: var(--gray);
+    color: var(--p);
+    border: none;
+    border-image: none;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    height: 2.25rem;
+    line-height: 1;
+    font-family: $sans-serif;
+
+    &:focus {
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+    }
+  }
+
+  svg {
+    color: var(--blue);
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0.75rem;
+    height: auto;
+    pointer-events: none;
+  }
+}
+
+.no-items-found {
+  margin-top: 1rem;
+}
+
+.search-filter-nav {
+  width: 100%;
+  overflow: hidden;
+
+  @include breakpoint($tablet-break) {
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 2rem;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-image: linear-gradient(
+        to right,
+        transparentize(white, 1),
+        var(--gray)
+      );
+    }
+  }
+  .search-filter-nav-inner {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    overflow: auto;
+
+    li {
+      list-style: none;
+      overflow: visible;
+    }
+
+    button {
+      white-space: nowrap;
+      color: var(--p);
+      border-radius: 5px;
+      background: transparent;
+      border: none;
+      font-size: 1rem;
+      line-height: 1rem;
+      padding: 0.65rem 1.15rem;
+      font-family: $sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      margin-right: 0.25rem;
+      transition: $transition;
+      outline: none;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        color: var(--blue);
+      }
+
+      &.active {
+        color: var(--white);
+        background: var(--blue);
+        @include box-shadow;
+        &:hover {
+          color: var(--white);
+        }
+      }
+    }
+  }
+}

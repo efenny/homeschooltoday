@@ -1,0 +1,189 @@
+{% extends "base.twig" %}
+{% import 'partial/ui.twig' as ui %}
+
+{% block content %}
+{# splash page #}
+	<section class='splash row heading'>
+		<div class='video-wrapper'>
+			{{ ui.image(page.landing_area_video_cover_image, 'video-cover') }}
+			<div id="landing-video" data-youtube="{{ page.landing_area_video_url }}">
+			</div>
+			{# <iframe width="560" height="315" src="{{ page.landing_area_video_url }}" frameborder="0" allow="autoplay; encrypted-media;"></iframe> #}
+		</div>
+		<div class='splash-inner'>
+			<div class='col'>
+				<div class='col-inner'>
+					<h1>{{ page.landing_area_title }}</h1>
+					{{ ui.p(page.landing_area_text) }}
+					{% if page.landing_area_main_button %}{{ ui.button(page.landing_area_main_button, 'top') }}{% endif %}
+					{% if page.landing_area_secondary_button %}{{ ui.button(page.landing_area_secondary_button, 'top') }}{% endif %}
+				</div>
+			</div>
+
+			<div class='col video'>
+				<div class='col-inner'>
+					<a href="{{ page.landing_area_video_url }}" data-lity>
+						<div class="img-wrapper {{ class }}" >
+							<img src="{{ TimberImage(page.landing_area_video_cover_image).src }}" alt="{{ TimberImage(page.landing_area_video_cover_image).alt }}">
+							<svg width="94" height="94" viewBox="0 0 94 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M46.771 0C37.5206 0 28.4779 2.74307 20.7864 7.88233C13.095 13.0216 7.10024 20.3262 3.56025 28.8725C0.0202651 37.4188 -0.905957 46.8229 0.898713 55.8956C2.70338 64.9683 7.15789 73.3021 13.6989 79.8431C20.24 86.3841 28.5738 90.8386 37.6465 92.6433C46.7191 94.448 56.1232 93.5218 64.6695 89.9818C73.2158 86.4418 80.5204 80.447 85.6597 72.7556C90.799 65.0641 93.542 56.0214 93.542 46.771C93.5059 34.3777 88.5666 22.5023 79.8032 13.7388C71.0397 4.97539 59.1643 0.0361435 46.771 0V0ZM37.417 67.818V25.724L65.479 46.771L37.417 67.818Z" fill="currentColor"/>
+							</svg> 
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{# latest news and send me info #}
+	<section id="info" class='row latest-news-row'>
+		<div class='row-inner'>
+			<div class='col articles  med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					<a href="#faqs" class="tagline">
+						{{ ui.h3(site.description) }}
+						{{ ui.image(page.top_homeschool_questions_image) }}
+					</a>
+
+					<div id="faqs" class="faq-wrapper">
+						{{ ui.h2(page.get_field('top_homeschool_questions').faqs|length ~ page.top_homeschool_questions_title) }}
+						<div class="accordion-wrapper">
+							{% for question in page.get_field('top_homeschool_questions').faqs %}
+								{{ ui.accordion(question.title, question.content) }}
+							{% endfor %}
+						</div>
+						{{ ui.button(page.top_homeschool_questions_main_button) }}
+					</div>
+				</div>
+			</div>
+			<div class='col form  med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					
+
+					<div class="latest-news-wrapper">
+						{% for post in page.get_field('news')|slice(0,3) %}
+							<article class="latest-news">
+								<a href="{% if post.external_link %}{{ post.external_link }}{% else %}{{ post.link }}{% endif %}" target="{% if post.external_link %}_blank{% else %}_self{% endif %}" class="latest-news-inner">
+									<div class="image">
+										{{ ui.image(post.thumbnail) }}
+									</div>
+									<div class="info">
+										<h3>{{ post.title }}</h3>
+										{{ ui.p(post.date, 'date') }}
+									</div>
+								</a>
+							</article>
+						{% endfor %}
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{# You’ve Decided to Homeschool… Now What? #}
+	<section class='row now-what x-lrg-pad-left-1 x-lrg-pad-right-1 top-pad-0-5 bottom-pad-0-5 bottom-margin-0-5'>
+		<div class='row-inner'>
+			<div class='col text x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					{{ ui.p(page.now_what_text) }}
+					<div class="download-wrapper" >
+						{% for item in page.get_field('now_what').downloads %}
+							{{ ui.button(item.button, 'download') }}
+						{% endfor %}
+					</div>
+					{{ ui.button(page.now_what_main_button) }}
+				</div>
+			</div>
+			<div class='col image x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					{{ ui.image(page.now_what_image) }}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{# Education Methods #}
+	<section class='row education-methods'>
+		<div class='row-inner'>
+			
+			<div class='col image x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10' style="background-image:url('{{ TimberImage(page.education_methods_image).src }}');">
+				<div class='col-inner'>
+				</div>
+			</div>
+
+			<div class='col text x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					{{ ui.p(page.education_methods_text) }}
+					{{ ui.button(page.education_methods_main_button) }}
+				</div>
+			</div>
+
+			
+		</div>
+	</section>
+
+	{# Resources #}
+	<section class='row resources'>
+		<div class='row-inner'>
+			<div class='col x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					{{ ui.p(page.resources_text) }}
+
+					<div class="cards">
+						{% for item in page.get_field('resources').cards %}
+								<div class="card">
+									<a href="{{ item.link.url }}" class="card-inner">
+										<div class="svg">{{ item.icon_svg }}</div>
+										<h3>{{ item.link.title }}</h3>
+									</a>
+								</div>
+						{% endfor %}
+					</div>
+					
+					{{ ui.button(page.resources_secondary_button, 'secondary') }}
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	{# Stories row #}
+	<section class='row stories'>
+		<div class='row-inner'>
+			<div class='col x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+				<h2>Stories</h2>
+					<div class="articles-wrapper">
+					{% for story in stories %}
+						<article class="post-card" >
+							<a href="{% if story.external_link %}{{ story.external_link }}{% else %}{{ story.link }}{% endif %}" target="{% if post.external_link %}_blank{% else %}_self{% endif %}"  class="post-card-wrapper" >
+								<div class="image">
+									<img src="{{ story.thumbnail.src }}" alt="{{ story.thumbnail.alt }}">
+								</div>
+								<div class="info">
+									<h3>{{ story.title }}</h3>
+									<h4>{{ story.sub_title }}</h4>
+									<div class="button external">
+										<span>Read More</span>
+										{% if story.external_link %}
+										<svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path class="base" d="M10.537 6.00295C10.4142 6.00295 10.2964 6.05173 10.2096 6.13856C10.1228 6.22539 10.074 6.34316 10.074 6.46595V9.70295C10.074 9.82575 10.0252 9.94352 9.9384 10.0303C9.85157 10.1172 9.7338 10.166 9.61101 10.166H2.19701C2.07421 10.166 1.95645 10.1172 1.86962 10.0303C1.78279 9.94352 1.73401 9.82575 1.73401 9.70295V2.29295C1.73401 2.17016 1.78279 2.05239 1.86962 1.96556C1.95645 1.87873 2.07421 1.82995 2.19701 1.82995H5.44001C5.56293 1.82995 5.68083 1.78112 5.76775 1.6942C5.85467 1.60728 5.90351 1.48938 5.90351 1.36645C5.90351 1.24353 5.85467 1.12563 5.76775 1.03871C5.68083 0.951787 5.56293 0.902954 5.44001 0.902954H2.19701C1.82836 0.902954 1.4748 1.0494 1.21413 1.31008C0.953453 1.57075 0.807007 1.9243 0.807007 2.29295V9.70295C0.807007 10.0716 0.953453 10.4252 1.21413 10.6858C1.4748 10.9465 1.82836 11.093 2.19701 11.093H9.60701C9.97566 11.093 10.3292 10.9465 10.5899 10.6858C10.8506 10.4252 10.997 10.0716 10.997 9.70295V6.46295C10.9962 6.3412 10.9475 6.22465 10.8614 6.13855C10.7753 6.05246 10.6588 6.00374 10.537 6.00295Z" fill="currentColor"/>
+											<path class="arrow" d="M11 1.36095C10.9996 1.33207 10.9966 1.30328 10.991 1.27495C10.991 1.26195 10.983 1.24995 10.98 1.23695C10.9759 1.22034 10.9709 1.20398 10.965 1.18795C10.9587 1.17426 10.9517 1.16091 10.944 1.14795C10.937 1.13495 10.931 1.12095 10.922 1.10795C10.9078 1.08741 10.8921 1.06801 10.875 1.04995L10.865 1.03695L10.853 1.02795C10.8346 1.01036 10.8149 0.99431 10.794 0.979955C10.781 0.971955 10.768 0.965955 10.755 0.958955C10.742 0.951955 10.729 0.943954 10.714 0.937954C10.6979 0.931996 10.6816 0.926987 10.665 0.922955C10.653 0.922955 10.641 0.914954 10.628 0.911954C10.598 0.905926 10.5675 0.902911 10.537 0.902955H7.75695C7.63403 0.902955 7.51613 0.951787 7.42921 1.03871C7.34229 1.12563 7.29345 1.24353 7.29345 1.36645C7.29345 1.48938 7.34229 1.60728 7.42921 1.6942C7.51613 1.78112 7.63403 1.82995 7.75695 1.82995H9.41795L5.61795 5.62995C5.5311 5.71681 5.4823 5.83462 5.4823 5.95745C5.4823 6.08029 5.5311 6.1981 5.61795 6.28495C5.70481 6.37181 5.82262 6.42061 5.94545 6.42061C6.06829 6.42061 6.18609 6.37181 6.27295 6.28495L10.073 2.48495V4.14595C10.073 4.26888 10.1218 4.38678 10.2087 4.4737C10.2956 4.56062 10.4135 4.60945 10.5365 4.60945C10.6594 4.60945 10.7773 4.56062 10.8642 4.4737C10.9511 4.38678 11 4.26888 11 4.14595V1.36595C11 1.36595 11 1.36295 11 1.36095Z" fill="currentColor"/>
+										</svg>
+										{% endif %}
+									</div>
+								</div>
+							</a>
+						</article>
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{% include "partial/row-stay-informed.twig" with { form_shortcode: options.form_shortcode } %}
+	
+
+{% endblock %}

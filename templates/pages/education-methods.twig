@@ -1,0 +1,23 @@
+{% extends "base.twig" %}
+{% import 'partial/ui.twig' as ui %}
+
+{% block content %}
+	{% include "partial/row-heading.twig" with {post: page.type, image: options.education_methods_image.url} %}
+  <section class='row card-row'>
+    <div class='row-inner'>
+      <div class='col x-lrg-col-5 lrg-col-5 med-col-10 sml-col-10'>
+        <div class='col-inner search-wrapper'>
+          {{ ui.p(options.education_methods_text) }}
+          {{ ui.search('Search method...', 'education-methods-search') }}
+           <div class="method-wrappers">
+            {% for method in education_methods %}
+              {{ ui.method_card(method.title, method.thumbnail, method.link, method.excerpt) }}
+            {% endfor %}
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+	{% include "partial/row-still-have-questions.twig" %}
+	{% include "partial/row-stay-informed.twig" with { form_shortcode: options.form_shortcode } %}
+{% endblock %}  

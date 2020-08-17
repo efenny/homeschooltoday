@@ -1,0 +1,14 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	{% include "partial/row-heading.twig" with {post: page, image: page.thumbnail} %}
+
+	<section class='row now-what x-lrg-pad-left-2 x-lrg-pad-right-2 lrg-pad-left-3 lrg-pad-right-3 med-pad-left-2 med-pad-right-2 sml-pad-left-1 sml-pad-right-1 top-pad-0-5 bottom-pad-0-5'>
+		<div class='row-inner'>
+			<div class='col text x-lrg-col-5 lrg-col-6 med-col-8 sml-col-10'>
+				{{post.content}}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

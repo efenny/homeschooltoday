@@ -1,0 +1,134 @@
+// Typography Style Sheet
+html {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+
+  @include breakpoint($mobile-break) {
+    font-size: 14px;
+  }
+}
+
+body {
+  font: $body-font;
+  font-size: 100%;
+  color: var(--p);
+  margin: 0;
+  padding: 0;
+  width: calc(100vw - (100vw - 100%));
+  background: var(--white);
+
+  // overflow: hidden;
+  // position: relative;
+  * {
+    box-sizing: border-box;
+  }
+}
+
+video {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--blue);
+
+  &.white {
+    color: var(--white);
+  }
+}
+
+a {
+  color: var(--blue);
+  -webkit-font-smoothing: antialiased;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-decoration: none;
+  transition: $transition;
+}
+
+p {
+  a {
+    text-decoration: underline;
+  }
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+
+  @include breakpoint($mobile-break) {
+    margin-bottom: calc(10px + 2rem);
+    justify-content: center;
+  }
+
+  em {
+    font-size: 0.8rem;
+    color: var(--p);
+    display: inline-block;
+    margin-top: 44px;
+    white-space: nowrap;
+    font-family: inherit;
+    font-style: normal;
+  }
+}
+.theme-switch {
+  display: flex;
+  height: 34px;
+  position: relative;
+  width: 60px;
+  cursor: pointer;
+
+  @include breakpoint($mobile-break) {
+    justify-content: center;
+  }
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: var(--blue);
+  bottom: 0;
+
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: var(--gray);
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: var(--green);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

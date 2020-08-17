@@ -1,0 +1,171 @@
+.page-template-resources {
+  .main-row {
+    padding-left: $col-vw;
+    padding-right: $col-vw;
+    @include breakpoint($tablet-break) {
+      padding-bottom: $col-vw;
+      padding-top: $col-vw;
+    }
+
+    .row-inner {
+      @include breakpoint($tablet-break) {
+        flex-direction: column-reverse;
+      }
+      .image {
+        padding-right: $col-vw;
+
+        @include breakpoint($tablet-break) {
+          margin-top: $col-vw;
+          padding-right: 0;
+        }
+
+        .img-wrapper {
+          position: relative;
+          padding-bottom: $col-vw/4;
+
+          @include breakpoint($tablet-break) {
+            padding-bottom: $col-vw/2;
+            img {
+              height: $col-vw * 7;
+              object-fit: cover;
+            }
+          }
+
+          &::before {
+            content: "";
+            width: $col-vw * 3.75;
+            height: $col-vw;
+            background: var(--green);
+            position: absolute;
+            right: $col-vw/4;
+            bottom: 0;
+            z-index: -1;
+
+            @include breakpoint($tablet-break) {
+              width: $col-vw * 10.5;
+              height: $col-vw * 2;
+              right: $col-vw/2;
+            }
+          }
+        }
+      }
+
+      .text {
+        @include breakpoint($tablet-break) {
+          padding-left: $col-vw;
+          padding-right: $col-vw;
+        }
+
+        @include breakpoint($mobile-break) {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        > .col-inner > .text-wrapper {
+          margin-bottom: 2rem;
+          width: $col-vw * 4;
+
+          @include breakpoint($laptop-break) {
+            width: $col-vw * 5.5;
+          }
+
+          @include breakpoint($tablet-break) {
+            width: $col-vw * 8;
+          }
+
+          @include breakpoint($mobile-break) {
+            width: 100%;
+            margin-left: 0;
+          }
+        }
+
+        .search-filter-nav {
+          &::after {
+            background-image: linear-gradient(
+              to right,
+              transparentize(white, 1),
+              var(--white)
+            );
+          }
+        }
+      }
+    }
+
+    .items-wrapper {
+      margin: 0;
+      padding: 0;
+      .item {
+        list-style: none;
+        margin-bottom: 1.5rem;
+
+        .title {
+          font-weight: 900 !important;
+          margin-bottom: 0.25rem;
+          color: var(--p);
+
+          a {
+            color: var(--blue);
+
+            &::after {
+              content: "";
+              display: inline-block;
+              width: 1em;
+              height: 1em;
+              margin-left: 0.35em;
+              margin-bottom: -0.1em;
+              background-image: url("/wp-content/themes/homeschooltoday/static/HST-external-blue.svg");
+              background-size: contain;
+              background-position: center;
+              background-repeat: no-repeat;
+            }
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .still-have-questions {
+    padding-bottom: $col-vw / 2;
+    position: relative;
+
+    @include breakpoint($mobile-break) {
+      padding-bottom: $col-vw;
+    }
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: calc(100% - #{$col-vw/2});
+      background: var(--gray);
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: -1;
+      @include breakpoint($mobile-break) {
+        height: calc(100% - #{$col-vw});
+      }
+    }
+  }
+}
+
+@include dark-mode {
+  .page-template-resources {
+    .main-row {
+      .items-wrapper {
+        .item {
+          .title {
+            a {
+              &::after {
+                background-image: url("/wp-content/themes/homeschooltoday/static/HST-external-dark.svg");
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

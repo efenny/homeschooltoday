@@ -1,0 +1,129 @@
+// Button Style Sheet
+// Primary
+@mixin button {
+  font-size: 1rem !important;
+  line-height: 1.25em !important;
+  padding: 0.625em 1.5em !important;
+  background: var(--green) !important;
+  border: none !important;
+  display: inline-block !important;
+  color: var(--white) !important;
+  font-family: $sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  font-weight: 700 !important;
+  border-radius: 5px !important;
+  @include box-shadow-dark-hover;
+  margin-top: 2rem !important;
+  border: none !important !important;
+  cursor: pointer;
+
+  @include breakpoint($mobile-break) {
+    font-size: 0.9rem !important;
+    padding: 0.625em 1em !important;
+  }
+
+  &:hover {
+    background: var(--highlight-green);
+  }
+}
+.button {
+  @include button;
+
+  &.secondary,
+  &.secondray,
+  &.download,
+  &.downlaod,
+  &.pdf,
+  &.document,
+  &.redirect,
+  &.external {
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--p) !important;
+    text-transform: none !important;
+    letter-spacing: initial !important;
+
+    svg {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &.secondary,
+  &.secondray {
+    svg {
+      transition: $transition;
+    }
+    &:hover {
+      svg {
+        transform: translateX(0.5rem);
+      }
+    }
+  }
+
+  &.download,
+  &.downlaod,
+  &.pdf,
+  &.document {
+    svg .arrow {
+      transition: $transition;
+    }
+    // CONVERT TO CSS ANIMATION
+    &:hover {
+      svg .arrow {
+        @at-root {
+          @keyframes downloadAnimation {
+            0% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(0.168rem);
+            }
+            100% {
+              transform: translateY(0);
+            }
+          }
+        }
+        animation: downloadAnimation 0.5s ease-in-out backwards;
+      }
+    }
+  }
+
+  &.redirect,
+  &.external {
+    svg .arrow {
+      transition: $transition;
+    }
+    // CONVERT TO CSS ANIMATION
+    &:hover {
+      svg .arrow {
+        @at-root {
+          @keyframes externalAnimation {
+            0% {
+              transform: translate(0, 0);
+            }
+            50% {
+              transform: translate(-0.168rem, 0.168rem);
+            }
+            100% {
+              transform: translate(0, 0);
+            }
+          }
+        }
+        animation: externalAnimation 0.5s ease-in-out backwards;
+      }
+    }
+
+    svg {
+      width: 0.813rem;
+      height: auto;
+    }
+  }
+}
+
+@include dark-mode {
+  .button {
+    color: $darkModeWhite !important;
+  }
+}

@@ -1,0 +1,44 @@
+@import "utility/breakpoint";
+@import "utility/variables";
+@import "utility/darkmode";
+@import "utility/typography";
+@import "utility/mixins";
+@import "utility/vendors/lity";
+@import "utility/vendors/slick";
+@import "pages/base";
+@import "pages/home";
+
+.page-id-12 {
+  @import "pages/about";
+}
+
+.page-template-contact {
+  @import "pages/contact";
+}
+
+.single {
+  @import "pages/single";
+}
+
+@import "pages/resources/getting-started";
+@import "pages/resources/resources";
+@import "pages/resources/resources-main";
+@import "pages/faq";
+@import "pages/studies";
+@import "pages/already-started";
+@import "pages/education-methods/education-methods-archive";
+@import "pages/education-methods/education-methods-single";
+
+@import "pages/blog";
+
+.error404 {
+  @import "pages/error404";
+}
+
+.search {
+  @import "pages/search";
+}
+
+@media print {
+  @import "utility/print";
+}

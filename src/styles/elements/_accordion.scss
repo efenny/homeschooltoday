@@ -1,0 +1,185 @@
+.accordion-wrapper {
+  .accordion {
+    margin-bottom: 0.75rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.accordion {
+  width: 100%;
+
+  &.active {
+    > .accordion-inner {
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.16);
+    }
+  }
+
+  > .accordion-inner {
+    width: 100%;
+    background: var(--white);
+    border-radius: 5px;
+    @include box-shadow-light-hover;
+
+    .icon {
+      transition: $transition;
+      transform-origin: center;
+
+      svg {
+        path {
+          stroke: var(--blue);
+        }
+      }
+    }
+
+    > .title {
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      padding: 1rem;
+      background: none;
+      border: none;
+      outline: none;
+
+      &:hover {
+        > .title-inner {
+          h5 {
+            color: var(--blue);
+          }
+        }
+      }
+
+      &.active {
+        > .title-inner {
+          h5 {
+            color: var(--blue);
+          }
+        }
+
+        .icon {
+          transform: rotate(135deg);
+        }
+      }
+
+      > .title-inner {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        h5 {
+          font-size: 0.875rem !important;
+          font-weight: 700 !important;
+          color: var(--p);
+          transition: $transition;
+          padding-right: 1.5rem;
+          text-align: left;
+        }
+      }
+
+      &.active {
+        &::after {
+          transform: translateX(0);
+        }
+
+        .arrow {
+          img {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    > .body {
+      display: none;
+
+      > .body-inner {
+        width: 100%;
+        padding: 1rem;
+        padding-bottom: 2rem;
+        position: relative;
+
+        &::before {
+          content: "";
+          width: calc(100% - 2rem);
+          height: 1px;
+          background: var(--gray);
+          position: absolute;
+          top: 0;
+          left: 1rem;
+        }
+
+        iframe {
+          @include breakpoint($tablet-break) {
+            width: 100%;
+          }
+        }
+
+        // a[target="_blank"] {
+        //   font-size: 1rem !important;
+        //   line-height: 1.25em !important;
+        //   border: none !important;
+        //   display: inline-block !important;
+        //   font-family: $sans-serif !important;
+        //   font-weight: 700 !important;
+        //   border-radius: 5px !important;
+        //   @include box-shadow-dark-hover;
+        //   margin-top: 0 !important;
+        //   border: none !important !important;
+        //   cursor: pointer;
+        //   padding: 0 !important;
+        //   background: transparent !important;
+        //   box-shadow: none !important;
+        //   color: var(--p) !important;
+        //   text-transform: none !important;
+        //   text-decoration: none !important;
+        //   letter-spacing: initial !important;
+
+        //   span {
+        //     font-weight: 700 !important;
+        //   }
+
+        //   &:hover {
+        //     opacity: 0.9;
+        //   }
+
+        //   &::after {
+        //     content: "";
+        //     width: 1em;
+        //     height: 1em;
+        //     display: inline-block;
+        //     background-image: url("/hst/wp-content/themes/homeschooltoday/static/HST-external.svg");
+        //     background-size: contain;
+        //     background-position: center;
+        //     background-repeat: no-repeat;
+        //     margin-left: 0.5rem;
+        //     margin-bottom: -0.1em;
+        //   }
+        // }
+      }
+    }
+  }
+}
+
+@include dark-mode {
+  .accordion {
+    .accordion-inner {
+      border: 1px solid var(--gray);
+      background: $darkModeMedGray;
+
+      > .body {
+        > .body-inner {
+          a[target="_blank"] {
+            &::after {
+              background-image: url("/hst/wp-content/themes/homeschooltoday/static/HST-external-white.svg");
+            }
+          }
+        }
+      }
+    }
+  }
+}

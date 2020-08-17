@@ -1,0 +1,36 @@
+.still-have-questions {
+  .row-inner {
+    justify-content: center;
+    width: 100%;
+  }
+  .col {
+    @include box-shadow;
+    background: var(--white);
+
+    @include breakpoint($mobile-break) {
+      padding-left: $col-vw/2;
+      padding-right: $col-vw/2;
+    }
+    @include breakpoint($mobile-break-sml) {
+      padding-left: $col-vw/4;
+      padding-right: $col-vw/4;
+    }
+
+    .col-inner {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// darkmode
+@include dark-mode {
+  .still-have-questions {
+    .col {
+      background: $darkModeMedGray;
+    }
+  }
+}

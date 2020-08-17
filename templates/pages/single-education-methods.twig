@@ -1,0 +1,41 @@
+{% extends "base.twig" %}
+{% import 'partial/ui.twig' as ui %}
+
+{% block content %}
+	{% include "partial/row-heading.twig" with {image: page.thumbnail} %}
+	<section class='row the-info'>
+		<div class='row-inner'>
+			<div class='col first x-lrg-col-4 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					{{ ui.p(post.introduction) }}
+					{% if post.inside_image %}
+						{{ ui.image(post.inside_image) }}
+					{% endif %}
+				</div>
+			</div>
+			<div class='col second x-lrg-col-4 lrg-col-5 med-col-10 sml-col-10'>
+				<div class='col-inner'>
+					<div class="strengths">
+						{{ ui.h3('Strengths') }}
+						{{ ui.p(post.strengths) }}
+					</div>
+
+					<div class="points-to-consider">
+						{{ ui.h3('Points to consider') }}
+						{{ ui.p(post.points_to_consider) }}
+					</div>
+
+					<div class="resources">
+						{% if options.education_method_footnote %}{{ ui.h3('Resources<sup>*</sup>') }}{% else %}{{ ui.h3('Resources') }}{% endif %}
+						{{ ui.p(post.resources) }}
+						{% set backButton = {title: 'Back to ' ~ post.type.label, url: '/' ~ post.type.rewrite.slug, } %}
+						{{ ui.button(backButton, "secondary") }} 
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+	{% if options.education_method_footnote %}{{ ui.p(options.education_method_footnote, 'footnote') }}{% endif %}
+	{% include "partial/row-stay-informed.twig" with { form_shortcode: options.form_shortcode } %}
+{% endblock %}  
