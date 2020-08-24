@@ -212,13 +212,6 @@ function search_filters(buttons, itemsWrapper, eleSearched) {
   if ($(buttons).length > 0) {
     var hash = location.hash;
     $(hash).click();
-
-    $("html, body").animate(
-      {
-        scrollTop: 0,
-      },
-      1
-    );
   }
 }
 
@@ -321,11 +314,27 @@ function accordionsInit() {
       if (!activeClass) {
         $(this).closest(ele).toggleClass("active");
         $(this).toggleClass("active");
-        $(this).siblings().slideToggle();
+
+        $(this)
+          .siblings()
+          .slideToggle(400, function () {
+            $("html, body").animate(
+              {
+                scrollTop: $(this).offset().top - 170,
+              },
+              1000
+            );
+          });
       }
 
       e.stopPropagation();
     });
+
+    if ($(ele).length > 0) {
+      var hash = location.hash;
+      console.log($(ele + hash));
+      $(ele + hash + " " + ele + "-inner > .title").click();
+    }
   }
   accordionFunc(".accordion");
 }
