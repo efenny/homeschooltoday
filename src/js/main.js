@@ -212,6 +212,13 @@ function search_filters(buttons, itemsWrapper, eleSearched) {
   if ($(buttons).length > 0) {
     var hash = location.hash;
     $(hash).click();
+
+    // $("html, body").animate(
+    //   {
+    //     scrollTop: 0,
+    //   },
+    //   1
+    // );
   }
 }
 
@@ -332,8 +339,10 @@ function accordionsInit() {
 
     if ($(ele).length > 0) {
       var hash = location.hash;
-      console.log($(ele + hash));
-      $(ele + hash + " " + ele + "-inner > .title").click();
+
+      if (hash !== "") {
+        $(ele + hash + " " + ele + "-inner > .title").click();
+      }
     }
   }
   accordionFunc(".accordion");
@@ -475,12 +484,22 @@ function smooth_scroll() {
         if (target.length) {
           // Only prevent default if animation is actually gonna happen
           event.preventDefault();
-          $("html, body").animate(
-            {
-              scrollTop: target.offset().top - 100,
-            },
-            1000
-          );
+          console.log(target);
+          // console.log(.find(".title"));
+
+          if ($(this.hash + ".accordion")) {
+            $(this.hash + ".accordion")
+              .find(".title")
+              .click();
+          } else {
+            $("html, body").animate(
+              {
+                scrollTop: target.offset().top - 100,
+              },
+              1000,
+              function () {}
+            );
+          }
         }
       }
     });
