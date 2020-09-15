@@ -69,7 +69,9 @@
 									</div>
 									<div class="info">
 										<h3>{{ post.title }}</h3>
-										{{ ui.p(post.date, 'date') }}
+										{% if not function('has_category','workshops', post) %}
+											{{ ui.p(post.date, 'date') }}
+										{% endif %}
 									</div>
 								</a>
 							</article>
