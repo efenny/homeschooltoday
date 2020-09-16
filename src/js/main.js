@@ -484,14 +484,16 @@ function smooth_scroll() {
         if (target.length) {
           // Only prevent default if animation is actually gonna happen
           event.preventDefault();
-          console.log(target);
+          // console.log(target);
           // console.log(.find(".title"));
 
-          if ($(this.hash + ".accordion")) {
+          if ($(this.hash + ".accordion").length) {
             $(this.hash + ".accordion")
               .find(".title")
               .click();
+            console.log("dank");
           } else {
+            console.log("dankster");
             $("html, body").animate(
               {
                 scrollTop: target.offset().top - 100,
