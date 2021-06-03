@@ -185,6 +185,34 @@
       }
     }
   }
+
+  .supportInfo {
+    display: none !important;
+  }
+}
+
+.tfaform-wrapper {
+  margin: 2rem 0;
+  > p,
+  > br {
+    display: none !important  ;
+  }
+
+  .wFormContainer {
+    > .wFormFooter,
+    > .supportInfo {
+      display: none !important;
+    }
+  }
+
+  .wForm {
+    .wFormTitle {
+      margin-bottom: 0;
+    }
+    form > .section.group {
+      padding-left: 0;
+    }
+  }
 }
 
 .gform_wrapper {
