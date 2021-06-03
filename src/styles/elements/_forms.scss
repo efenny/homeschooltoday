@@ -209,8 +209,15 @@
     .wFormTitle {
       margin-bottom: 0;
     }
-    form > .section.group {
-      padding-left: 0;
+    form {
+      > .section.group {
+        padding-left: 0;
+      }
+
+      .actions {
+        align-items: flex-start !important;
+        margin-top: 1rem !important;
+      }
     }
   }
 }
